@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 jobs: 
   security-scan:
-  runs-on: ubuntu-latest  
-  steps:
+  runs-on:  ubuntu-latest  
+  steps:  
     - name: Checkout code
-      uses: action/checkout@v4
+      uses: actions/checkout@v4
 
       #verificação de Segredos com Gitleaks
     - name: Scan for secrets
@@ -24,8 +24,8 @@ jobs:
     - name: SCA with OWASP Dependency-check
       uses: dependency-check/Dependency-Check@main
       with:
-        project: 'Meu-Projeto-DevSecOps '
-        path: ' . '
+        project: 'Meu-Projeto-DevSecOps'
+        path: '.'
         format: 'HTML'
         args: >
          --failOnCVSS 7
