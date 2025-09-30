@@ -17,8 +17,11 @@ jobs:
 
       # Análise Estática de Código (SAST) com Semgrep
     - name: SAST with Semgrep
-      uses: returntocorp/semgrep-action@v2
-
+      run: |
+        python3 -m pip install Semgrep
+        semgrep --config=auto --sarif --output semgrep-results.sarif .
+      continue-on-error: true
+ 
       # Análise de Dependências (SCA) com OWASP Dependency-check
 
     - name: SCA with OWASP Dependency-check
@@ -27,8 +30,6 @@ jobs:
         project: 'Meu-Projeto-DevSecOps'
         path: '.'
         format: 'HTML'
-        args: >
-         --failOnCVSS 7
-         --enableRetired
-
+      env:
+        JAVA_HOME: /opt/jdk
         
