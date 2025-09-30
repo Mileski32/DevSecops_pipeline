@@ -25,7 +25,7 @@ jobs:
       # Análise de Dependências (SCA) com OWASP Dependency-check
 
     - name: SCA with OWASP Dependency-check
-      uses: dependency-check/Dependency-Check@main
+      uses: dependency-check/Dependency-Check_Acion@main
       with:
         project: 'Meu-Projeto-DevSecOps'
         path: '.'
