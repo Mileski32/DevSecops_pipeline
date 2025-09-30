@@ -4,20 +4,20 @@ on: [push, pull_request]
 
 jobs: 
   security-scan:
-  runs-on: ubuntu-latest
+  runs-on: ubuntu-latest  
   steps:
     - name: Checkout code
-      uses: action/Checkout@v4
+      uses: action/checkout@v4
 
       #verificação de Segredos com Gitleaks
     - name: Scan for secrets
       uses: gitleaks/gitleaks-action@v2
       env:
-        GITHUB_TOKEN: ${{ srets.GUTHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Análise Estática de Código (SAST) com Semgrep
     - name: SAST with Semgrep
-      uses: returntocorp /semgrep-action@v2
+      uses: returntocorp/semgrep-action@v2
 
       # Análise de Dependências (SCA) com OWASP Dependency-check
 
@@ -25,8 +25,8 @@ jobs:
       uses: dependency-check/Dependency-Check@main
       with:
         project: 'Meu-Projeto-DevSecOps '
-        path: ' - '
-        format: ' HTML '
+        path: ' . '
+        format: 'HTML'
         args: >
          --failOnCVSS 7
          --enableRetired
